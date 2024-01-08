@@ -22,7 +22,20 @@ public class Main {
 
         System.out.println("y words : " + res.size());
         for(String s : res) {
-            System.out.print(s);
+            System.out.print(s + " ");
+        }
+        System.out.println();
+
+        if (dic.removeWord("fathi")){
+            System.out.println("You just deleted fathi");
+        }
+
+        if (dic.removeWord("@omar")){
+            System.out.println("You just deleted @omar");
+        }
+
+        if (dic.removeWord("mohammed")){
+            System.out.println("You just deleted mohammed");
         }
 
     }
