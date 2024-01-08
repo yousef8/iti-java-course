@@ -3,6 +3,8 @@ package wordDictionary;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class WordDictionary {
     private final HashMap<Character, TreeSet<String>> dictionary;
@@ -81,5 +83,22 @@ public class WordDictionary {
         }
 
         return new ArrayList<>(dictionary.remove(key));
+    }
+
+    public ArrayList<String> search(String regx) {
+        ArrayList<String> wordsMatched = new ArrayList<>();
+        Pattern pattern = Pattern.compile(regx);
+
+        dictionary.forEach((key, words) -> {
+            for(String word : words) {
+                Matcher matcher = pattern.matcher(word);
+
+                if (matcher.matches()){
+                    wordsMatched.add(word);
+                }
+            }
+        });
+
+        return wordsMatched;
     }
 }

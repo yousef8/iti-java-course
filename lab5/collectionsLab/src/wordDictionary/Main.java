@@ -14,17 +14,21 @@ public class Main {
         words.add("   muhammed   ");
         words.add("   mohammed   ");
 
+        System.out.println("----------Test Insertion and Printing--------------------");
         dic.insert(words);
 
         dic.printDictionary();
 
+        System.out.println("\n---------------Test getWords()-------------------------");
         ArrayList<String> res = dic.getWords('y');
 
-        System.out.println("y words : " + res.size());
+        System.out.println("y words : " + res.size() + " words");
         for(String s : res) {
             System.out.print(s + " ");
         }
         System.out.println();
+
+        System.out.println("\n----------------Test removeWord()------------------------");
 
         if (dic.removeWord("fathi")){
             System.out.println("You just deleted fathi");
@@ -37,13 +41,29 @@ public class Main {
         if (dic.removeWord("mohammed")){
             System.out.println("You just deleted mohammed");
         }
+        dic.printDictionary();
+
+        System.out.println("\n----------------Test removeAllKey()------------------------");
 
         res = dic.removeAllKey('e');
-
-        System.out.println(res.size());
+        System.out.println("Remove [" + res.size() + "] words that start with 'e'");
 
         res = dic.removeAllKey('Y');
+        System.out.println("Remove [" + res.size() + "] words that start with 'Y' and they are : ");
+        for (String s : res){
+            System.out.print(s + " ");
+        }
+        System.out.println();
 
-        System.out.println(res.size());
+        System.out.println("\n----------------Test search()------------------------");
+        System.out.println("current dictionary : ");
+        dic.printDictionary();
+
+        ArrayList<String> matchedWords = dic.search(".*");
+        System.out.println("Strings matches '.*' : ");
+        for(String word : matchedWords){
+            System.out.print(word + " ");
+        }
+        System.out.println();
     }
 }
