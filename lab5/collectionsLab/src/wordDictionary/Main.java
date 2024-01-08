@@ -3,9 +3,9 @@ package wordDictionary;
 import java.util.ArrayList;
 
 public class Main {
-    public static void main(String[] args) {
-        WordDictionary dic = new WordDictionary();
 
+    public void test() {
+        WordDictionary dic = new WordDictionary();
         ArrayList<String> words = new ArrayList<>();
         words.add("   yousef   ");
         words.add("   Yousef   ");
@@ -65,5 +65,11 @@ public class Main {
             System.out.print(word + " ");
         }
         System.out.println();
+
+    }
+    public static void main(String[] args) {
+        DictionaryManager dm = new DictionaryManager();
+        dm.run();
+        System.out.println("GoodBye");
     }
 }
