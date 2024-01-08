@@ -72,4 +72,14 @@ public class WordDictionary {
 
         return words.remove(word);
     }
+
+    public ArrayList<String> removeAllKey(char key){
+        key = sanitizeKey(key);
+
+        if (! dictionary.containsKey(key)){
+            return new ArrayList<>();
+        }
+
+        return new ArrayList<>(dictionary.remove(key));
+    }
 }

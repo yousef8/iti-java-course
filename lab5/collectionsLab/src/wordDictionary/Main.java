@@ -38,5 +38,12 @@ public class Main {
             System.out.println("You just deleted mohammed");
         }
 
+        res = dic.removeAllKey('e');
+
+        System.out.println(res.size());
+
+        res = dic.removeAllKey('Y');
+
+        System.out.println(res.size());
     }
 }
