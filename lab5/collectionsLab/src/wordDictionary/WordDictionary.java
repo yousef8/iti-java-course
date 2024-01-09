@@ -93,7 +93,7 @@ public class WordDictionary {
             for(String word : words) {
                 Matcher matcher = pattern.matcher(word);
 
-                if (matcher.matches()){
+                if (matcher.find()){
                     wordsMatched.add(word);
                 }
             }
