@@ -16,7 +16,7 @@ public class Main {
     countries.values().stream().map((country) -> Map.entry(country.getName(), country.getCities().stream().max(Comparator.comparingInt(City::getPopulation))))
         .filter((entry) -> entry.getValue().isPresent())
         .map((entry) -> Map.entry(entry.getKey(), entry.getValue().get()))
-        .forEach(System.out::println);
+        .forEach(entry -> System.out.println(entry.getKey() + " \t=>\t" + entry.getValue()));
 
     // Highest Populated city in Each Continent
     System.out.println("\n######################  Highest Populated City in Each Continent  ###############################");
@@ -34,7 +34,7 @@ public class Main {
             ))
         .filter(entry -> entry.getValue().isPresent())
         .map(entry -> Map.entry(entry.getKey(), entry.getValue().get()))
-        .forEach(entry -> System.out.println(entry.getKey() + "\t=>\t" + entry.getValue()));
+        .forEach(entry -> System.out.println(entry.getKey() + " \t=>\t" + entry.getValue()));
 
 
   }
