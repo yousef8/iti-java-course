@@ -4,7 +4,6 @@ import domain.Country;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Main {
   public static void main(String[] args) {
@@ -36,6 +35,20 @@ public class Main {
         .map(entry -> Map.entry(entry.getKey(), entry.getValue().get()))
         .forEach(entry -> System.out.println(entry.getKey() + " \t=>\t" + entry.getValue()));
 
+    System.out.println("\n######################  Highest Populated Capital  ###############################");
+    Optional<Map.Entry<String, City>> highestPopulatedCapital = countries.values().stream()
+        .map(cntry -> Map.entry(
+            cntry.getName(),
+            cntry.getCities().stream().filter(city -> city.getId() == cntry.getCapital()).findFirst()
+        ))
+        .filter(entry -> entry.getValue().isPresent())
+        .map(entry -> Map.entry(entry.getKey(), entry.getValue().get()))
+        .max(Map.Entry.comparingByValue(Comparator.comparingInt(City::getPopulation)));
 
+    if (highestPopulatedCapital.isPresent()) {
+      System.out.println(highestPopulatedCapital.get());
+    } else {
+      System.out.println("No Capital is empty");
+    }
   }
 }
