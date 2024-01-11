@@ -23,32 +23,33 @@ public class Main {
         .entrySet().stream()
         .map(entry -> Map.entry(entry.getKey(),
             entry.getValue().stream().map(Country::getCities)
-                .reduce(new ArrayList<City>(), (dest, src) -> {
+                .reduce(new ArrayList<>(), (dest, src) -> {
                   dest.addAll(src);
                   return dest;
                 })
         ))
         .map(entry -> Map.entry(entry.getKey(),
             entry.getValue().stream().max(Comparator.comparingInt(City::getPopulation))
-            ))
+        ))
         .filter(entry -> entry.getValue().isPresent())
         .map(entry -> Map.entry(entry.getKey(), entry.getValue().get()))
         .forEach(entry -> System.out.println(entry.getKey() + " \t=>\t" + entry.getValue()));
 
     System.out.println("\n######################  Highest Populated Capital  ###############################");
-    Optional<Map.Entry<String, City>> highestPopulatedCapital = countries.values().stream()
+    Map.Entry<String, City> highestPopulatedCapital = countries.values().stream()
         .map(cntry -> Map.entry(
             cntry.getName(),
             cntry.getCities().stream().filter(city -> city.getId() == cntry.getCapital()).findFirst()
         ))
         .filter(entry -> entry.getValue().isPresent())
         .map(entry -> Map.entry(entry.getKey(), entry.getValue().get()))
-        .max(Map.Entry.comparingByValue(Comparator.comparingInt(City::getPopulation)));
+        .max(Map.Entry.comparingByValue(Comparator.comparingInt(City::getPopulation)))
+        .orElse(null);
 
-    if (highestPopulatedCapital.isPresent()) {
-      System.out.println(highestPopulatedCapital.get());
+    if (null != highestPopulatedCapital) {
+      System.out.println(highestPopulatedCapital);
     } else {
-      System.out.println("No Capital is empty");
+      System.out.println("Capital is Null");
     }
   }
 }
