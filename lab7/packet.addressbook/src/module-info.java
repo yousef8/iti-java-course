@@ -1,0 +1,2 @@
+module packet.addressbook {
+}
